@@ -1,11 +1,12 @@
 
 
-# EX 58 C Function to display queue elements using Linked List.(use float data in the queue)
+# EX 59 C functions to perform-enqueue, dequeue, peek, display in Queue using Linked List.(use float data in Queue).
 ## DATE:
 ## AIM:
-To write a C Function to display queue elements using Linked List.
+To write a C functions to perform-enqueue, dequeue, peek, display in Queue using Linked List.
 
 ## Algorithm
+
 
 1. **Start**  
 2. Define a structure `Node` with two fields:  
@@ -23,8 +24,6 @@ To write a C Function to display queue elements using Linked List.
 7. Continue until `temp` becomes `NULL`.  
 8. **End**  
 
-This algorithm efficiently traverses and prints all queue elements using a linked list. Want a full implementation with enqueue and dequeue functions? 🚀
-
 
 ## Program:
 ```
@@ -33,28 +32,56 @@ struct Node
    float data;
    struct Node *next;
 }*front=NULL,*rear=NULL;
-void display()
+void enqueue(float data)
 {
-    struct Node *ptr;
-    ptr=front;
-    if(front==NULL)
+    struct Node *ptr=(struct Node*)malloc(sizeof(struct Node*));
+    ptr->data=data;
+    ptr->next=NULL;
+    if(front == NULL)
     {
-        printf("queue is empty");
-        
+        front=rear=ptr;
     }
     else
-    {printf("Queue elements:\n");
-    while(ptr!=0)
+    {
+        rear->next=ptr;
+        rear=ptr;
+    }
+}
+void display()
+{
+    printf("queue elements:\n");
+    struct Node *ptr;
+    ptr=front;
+    while(ptr!=NULL)
     {
         printf("%.3f\n",ptr->data);
         ptr=ptr->next;
-    }}
+    }
+}
+void dequeue()
+{
+    struct Node *ptr;
+    if(front==NULL)
+    {
+       printf("queue is empty"); 
+    }
+    else
+    {
+        ptr=front;
+        front=ptr->next;
+        free(ptr);
+    }
+    
+}
+void peek()
+{
+    printf("peek:%.3f\n",front->data);
 }
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/b8dfe2ca-8868-454c-ae0b-769a11eeeaff)
 
+![image](https://github.com/user-attachments/assets/13f1b481-e75c-4bc6-9b14-174788dd49e4)
 
 
 ## Result:
